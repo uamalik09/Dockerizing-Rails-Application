@@ -1,0 +1,61 @@
+version: '3.1'
+services:
+  db: 
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./db_storage:/var/lib/mysql
+  app1:
+    build: 
+      dockerfile: dockerfile
+    environment:
+      DB_USER: root
+      DB_NAME: app
+      DB_PASSWORD: password
+      DB_HOST: db
+    depends_on:
+      - db
+    volumes:
+      - ./storage:/app/storage
+
+  app2:
+    build: 
+      dockerfile: dockerfile
+    environment:
+      DB_USER: root
+      DB_NAME: app
+      DB_PASSWORD: password
+      DB_HOST: db
+    depends_on:
+      - db
+    volumes:
+      - ./storage:/app/storage
+  app3:
+    build: 
+      dockerfile: dockerfile
+    environment:
+      DB_USER: root
+      DB_NAME: app
+      DB_PASSWORD: password
+      DB_HOST: db
+    depends_on:
+      - db   
+    volumes:
+      -  ./storage:/app/storage
+
+  proxy:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+     - "8080:8080"
+    depends_on:
+      - app1
+      - app2
+      - app3
+    

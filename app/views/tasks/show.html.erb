@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<div class="card mb-8">
+  <div class="m-auto">
+  <div class="row text-center">
+    <div class="col fs-4">
+      <strong>Name:</strong>
+    </div>
+    <div class="col fs-6">
+      <%= @task.name %>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col fs-4">
+      <strong>Description:</strong>
+    </div>
+    <div class="col fs-6">
+      <%= @task.description %>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col fs-4">
+      <strong>Completed:</strong>
+    </div>
+    <div class="col fs-6">
+      <%= @task.completed %>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col fs-4">
+      <strong>Notes:</strong>
+    </div>
+    <div class="col fs-6">
+      <%= @task.notes %>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col fs-4">
+      <strong>Upload:</strong>
+    </div>
+    <div class="col fs-6">
+      <%= image_tag @task.upload, style: 'width: 500px' %>
+    </div>
+  </div>
+  </div>
+</div>
+<br>
+<div class="d-flex align-items-center justify-content-center">
+    <%= link_to 'Edit', edit_task_path(@task), class: "btn btn-success text-white" %> | 
+    <%= link_to 'Back', tasks_path, class: "btn btn-dark text-white" %>
+</div>
+

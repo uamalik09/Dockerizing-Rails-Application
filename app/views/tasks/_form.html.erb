@@ -1,0 +1,61 @@
+<div class="card m-8 p-8">
+<%= form_with(model: task, html:{class: "form-horizontal"}) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row m-2 p-2">
+      <div class="col text-center fs-5">
+        <%= form.label :name %>
+      </div>
+      <div class="col">
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+  </div>
+  <div class="row m-2 p-2">
+      <div class="col text-center fs-5">
+        <%= form.label :description %>
+      </div>
+      <div class="col">
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
+  </div>
+  <div class="row m-2 p-2">
+      <div class="col text-center fs-5">
+        <%= form.label :completed %>
+      </div>
+      <div class="col">
+        <%= form.check_box :completed %>
+      </div>
+  </div>
+  <div class="row m-2 p-2">
+      <div class="col text-center fs-5">
+        <%= form.label :notes %>
+      </div>
+      <div class="col">
+        <%= form.text_field :notes, class: "form-control" %>
+      </div>
+  </div>
+  <div class="row m-2 p-2">
+      <div class="col text-center fs-5">
+        <%= form.label :upload %>
+      </div>
+      <div class="col">
+        <%= form.file_field :upload, class: "form-control" %>
+      </div>
+  </div>
+
+  <div class="actions row">
+    <div class="col text-center fs-5">
+      <%= form.submit "Create Task", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+</div>
